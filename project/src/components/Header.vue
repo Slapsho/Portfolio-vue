@@ -5,6 +5,7 @@
       <a href="#presentation" :class="{ active: isActive('presentation') }">Présentation</a>
       <a href="#creations" :class="{ active: isActive('creations') }">Créations</a>
       <a href="#contact" :class="{ active: isActive('contact') }">Contact</a>
+      <router-link to="/work" :class="{ active: isActiveRoute('/work') }">Travaux</router-link>
       <div class="social-icons">
         <a href="https://github.com/victorsannier" target="_blank" class="header-icon">
           <i class="fab fa-github"></i>
@@ -31,6 +32,9 @@ export default {
     },
     isActive(section) {
       return window.location.hash === `#${section}`;
+    },
+    isActiveRoute(route) {
+      return this.$route.path === route;
     }
   }
 };
@@ -66,3 +70,4 @@ nav a.active {
   opacity: 0.5;
 }
 </style>
+
