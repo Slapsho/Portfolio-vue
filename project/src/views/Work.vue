@@ -15,8 +15,13 @@
     data() {
       return {
         images: [
-          { id: 1, src: '@/assets/work1.jpg', alt: 'Travail 1', description: 'Description du travail 1' },
-          { id: 2, src: '@/assets/work2.jpg', alt: 'Travail 2', description: 'Description du travail 2' },
+          { id: 1, src:'@/assets/image.charges/Charges 1.png', alt: 'Travail 1', description: 'Description du travail 1' },
+          { id: 2, src: '@/assets/image.charges/Charges 2.png', alt: 'Travail 2', description: 'Description du travail 2' },
+          { id: 3, src: '@/assets/image.charges/Charges 3.png', alt: 'Travail 3', description: 'Description du travail 1' },
+          { id: 4, src: '@/assets/image.charges/Charges 4.png', alt: 'Travail 4', description: 'Description du travail 1' },
+          { id: 5, src: '@/assets/image.charges/Charges 5.png', alt: 'Travail 5', description: 'Description du travail 1' },
+          { id: 6, src: '@/assets/image.charges/Charges 6.png', alt: 'Travail 6', description: 'Description du travail 1' },
+          { id: 7, src: '@/assets/image.charges/Charges 7.png', alt: 'Travail 7', description: 'Description du travail 1' },
           // Ajoutez plus d'images ici
         ]
       };
