@@ -1,10 +1,22 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+/* Autres styles globaux */
 body {
-    font-family: 'Lato-BlackItalic', sans-serif;
-  }
-  .creation {
-    transition: box-shadow 0.3s ease;
-  }
-  .creation:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
+  font-family: 'Lato-BlackItalic', sans-serif;
+}
+
+.creation {
+  transition: box-shadow 0.3s ease;
+}
+
+.creation:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer-icon {
+  transition: opacity 0.3s ease;
+}
+
+.footer-icon:hover {
+  opacity: 0.5;
+}
