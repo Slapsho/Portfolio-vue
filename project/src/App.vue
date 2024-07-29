@@ -19,5 +19,6 @@ export default {
 </script>
 
 <style>
+@import '~@fortawesome/fontawesome-free/css/all.css';
 /* Global styles */
 </style>
