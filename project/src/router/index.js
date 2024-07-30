@@ -1,16 +1,28 @@
+// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import Work from '../views/Work.vue';
-import NotFound from '../views/NotFound.vue';
+import About from '../views/about.vue'; // Importer le nouveau composant
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/work', component: Work },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About // Définir la route pour le nouveau composant
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
+  }
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 });
 
