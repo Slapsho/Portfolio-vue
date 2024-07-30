@@ -1,14 +1,15 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import HomeView from '../views/HomeView.vue';
 import About from '../view/about.vue';
 import GithubPage from '../views/GithubPage.vue'; // Importer le nouveau composant
+import NotFound from '../views/NotFound.vue'; 
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: HomeView
   },
   {
     path: '/about',
@@ -16,14 +17,14 @@ const routes = [
     component: About
   },
   {
-    path: '/github-page',
+    path: '/:catchAll(.*)',
     name: 'GithubPage',
     component: GithubPage // Définir la route pour le nouveau composant
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('../views/NotFound.vue')
+    component: NotFound
   }
 ];
 

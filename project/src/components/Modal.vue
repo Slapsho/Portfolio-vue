@@ -13,6 +13,7 @@
   
   <script>
   export default {
+    name: `AppModal`,
     props: {
       creation: Object
     },
