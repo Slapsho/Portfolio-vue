@@ -1,7 +1,7 @@
 <template>
   <div>
     <section id="presentation">
-      <h1>{{ Name }}</h1>
+      <h1>{{ name }}</h1>
       <p>{{ description }}</p>
       <p>{{ address }}</p>
       <p>{{ phone }}</p>
@@ -39,6 +39,7 @@
 import Modal from '../components/Modal.vue';
 
 export default {
+  name: 'Home',
   data() {
     return {
       name: 'Victor Sannier',
@@ -76,5 +77,6 @@ export default {
 </script>
 
 <style scoped>
-/* Styles pour la page d'accueil */
+/* Ajoutez ici vos styles pour la page d'accueil */
 </style>
+
