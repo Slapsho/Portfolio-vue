@@ -14,15 +14,20 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: AboutView
+  },
+  {
+    path: '/presentation',
+    name: 'Presentation',
+    component: () => import('../views/Presentation.vue')
+  },
+  {
+    path: '/project',
+    name: 'Project',
+    component: () => import('../views/Project.vue')
   },
   {
     path: '/:catchAll(.*)',
-    name: 'GithubPage',
-    component: GithubPage // Définir la route pour le nouveau composant
-  },
-  {
-    path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound
   }
