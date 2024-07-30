@@ -1,4 +1,4 @@
-<!-- src/views/GithubPage.vue -->
+
 <template>
     <div class="github-page">
       <h1>Projet GitHub : Commentaire Work</h1>
@@ -9,7 +9,7 @@
       <div class="presentation">
         <h2>Présentation du Projet</h2>
         <p>
-          <!-- Espace pour votre présentation -->
+          <!-- Espace pour présentation -->
           Ce projet est un espace commentaire que j'ai du réalisé, ce fut mon dernier travail sans compter celui-ci. Ce travail consista à créer un formulaire valide. <br>
            Dans ce travail j'ai du mettre un message d'erreur en cas de réponses non valide, de faire en sorte que le message s'affiche à la fin sur la page et ne de pas modifier la page en elle même.
         </p>

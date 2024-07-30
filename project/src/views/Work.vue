@@ -22,7 +22,7 @@
           { id: 5, src: '@/assets/image.charges/Charges 5.png', alt: 'Travail 5', description: 'Description du travail 1' },
           { id: 6, src: '@/assets/image.charges/Charges 6.png', alt: 'Travail 6', description: 'Description du travail 1' },
           { id: 7, src: '@/assets/image.charges/Charges 7.png', alt: 'Travail 7', description: 'Description du travail 1' },
-          // Ajoutez plus d'images ici
+          
         ]
       };
     }

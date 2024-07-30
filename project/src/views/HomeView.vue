@@ -46,10 +46,6 @@ export default {
       description: 'Développeur web débutant basé à Rouen.',
       address: 'Rouen',
       phone: '06 69 38 31 70',
-      creations: [
-        { id: 1, title: 'Création 1', image: 'image1.jpg', date: '2023', technologies: 'Vue, HTML, CSS', link: 'https://project1.com', repo: 'https://github.com/project1' },
-        // Ajoutez plus de créations ici
-      ],
       showModal: false,
       selectedCreation: null,
       contact: {

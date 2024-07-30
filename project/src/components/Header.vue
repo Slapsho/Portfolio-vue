@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="@/assets/logo.png" alt="Logo" @click="goHome" />
+    <img src="../assets/image/Cv Vector Design Images, Vector Cv Icon, Cv Icons, Cv Icon, Resume PNG Image For Free Download.jpeg" alt="Logo" @click="goHome" />
     <nav>
       <a href="#presentation" :class="{ active: isActive('presentation') }">Présentation</a>
       <a href="#creations" :class="{ active: isActive('creations') }">Créations</a>
@@ -12,16 +12,16 @@
       <li><router-link to="/github-page">Projet GitHub</router-link></li>
       </ul>
       <div class="social-icons">
-        <a href="https://github.com/victorsannier" target="_blank" class="header-icon">
+        <img src="../assets/image/github.jpeg" alt="Logo github"><a href="https://github.com/victorsannier" target="_blank" class="header-icon">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://linkedin.com/in/victorsannier" target="_blank" class="header-icon">
+        <img src="../assets/image/linkdin.jpeg" alt="Logo linkdin"><a href="https://linkedin.com/in/victorsannier" target="_blank" class="header-icon">
           <i class="fab fa-linkedin"></i>
         </a>
-        <a href="https://twitter.com/victorsannier" target="_blank" class="header-icon">
+        <img src="../assets/image/x-logo-twitter-elon-musk.webp" alt="Logo x"><a href="https://twitter.com/victorsannier" target="_blank" class="header-icon">
           <i class="fab fa-twitter"></i>
         </a>
-        <a href="https://facebook.com/victorsannier" target="_blank" class="header-icon">
+        <img src="../assets/image/" alt="Logo github"><a href="https://facebook.com/victorsannier" target="_blank" class="header-icon">
           <i class="fab fa-facebook"></i>
         </a>
       </div>

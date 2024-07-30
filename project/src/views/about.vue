@@ -1,4 +1,4 @@
-<!-- src/views/About.vue -->
+
 <template>
     <div class="about">
       <h1>À propos de moi</h1>
