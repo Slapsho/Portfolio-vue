@@ -6,6 +6,10 @@
       <a href="#creations" :class="{ active: isActive('creations') }">Créations</a>
       <a href="#contact" :class="{ active: isActive('contact') }">Contact</a>
       <router-link to="/work" :class="{ active: isActiveRoute('/work') }">Travaux</router-link>
+      <ul>
+      <li><router-link to="/">Accueil</router-link></li>
+      <li><router-link to="/about">À propos de moi</router-link></li>
+      </ul>
       <div class="social-icons">
         <a href="https://github.com/victorsannier" target="_blank" class="header-icon">
           <i class="fab fa-github"></i>
