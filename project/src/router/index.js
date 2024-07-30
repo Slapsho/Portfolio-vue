@@ -1,10 +1,9 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import About from '../view/about.vue';
-import GithubPage from '../views/GithubPage.vue'; // Importer le nouveau composant
+import HomeView from '../views/Home.vue';
+import AboutView from '../views/about.vue'; 
+import PresentationView from '../views/Presentation.vue'; 
+import ProjectView from '../views/Project.vue'; 
 import NotFound from '../views/NotFound.vue'; 
-
 const routes = [
   {
     path: '/',
@@ -19,12 +18,12 @@ const routes = [
   {
     path: '/presentation',
     name: 'Presentation',
-    component: () => import('../views/Presentation.vue')
+    component: PresentationView
   },
   {
     path: '/project',
     name: 'Project',
-    component: () => import('../views/Project.vue')
+    component: ProjectView
   },
   {
     path: '/:catchAll(.*)',
