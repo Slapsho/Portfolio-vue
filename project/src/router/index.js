@@ -1,7 +1,7 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import About from '../views/About.vue';
+import About from '../view/about.vue';
 import GithubPage from '../views/GithubPage.vue'; // Importer le nouveau composant
 
 const routes = [

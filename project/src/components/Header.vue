@@ -9,6 +9,7 @@
       <ul>
       <li><router-link to="/">Accueil</router-link></li>
       <li><router-link to="/about">À propos de moi</router-link></li>
+      <li><router-link to="/github-page">Projet GitHub</router-link></li>
       </ul>
       <div class="social-icons">
         <a href="https://github.com/victorsannier" target="_blank" class="header-icon">
