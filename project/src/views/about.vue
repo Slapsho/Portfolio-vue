@@ -35,5 +35,17 @@ export default {
     line-height: 1.6;
     margin-bottom: 20px;
   }
+
+  @media (max-width: 768px) {
+  .about h1 {
+    font-size: 2em;
+  }
+
+  .about p {
+    font-size: 1em;
+  }
+}
+
+
   </style>
   

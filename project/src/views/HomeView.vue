@@ -41,30 +41,44 @@ import Modal from '../components/Modal.vue';
 export default {
   name: 'HomeView',
   data() {
-    return {
-      name: 'Victor Sannier',
-      description: 'Développeur web débutant basé à Rouen.',
-      address: 'Rouen',
-      phone: '06 69 38 31 70',
-      showModal: false,
-      selectedCreation: null,
-      contact: {
-        name: '',
-        subject: '',
-        message: ''
+  return {
+    name: 'Victor Sannier',
+    description: 'Développeur web débutant basé à Rouen.',
+    address: 'Rouen',
+    phone: '06 69 38 31 70',
+    showModal: false,
+    selectedCreation: null,
+    contact: {
+      name: '',
+      subject: '',
+      message: ''
+    },
+    creations: [ 
+      {
+        id: 1,
+        title: 'Projet 1',
+        image: 'path/to/image1.jpg'
+      },
+      {
+        id: 2,
+        title: 'Projet 2',
+        image: 'path/to/image2.jpg'
       }
-    };
-  },
+    ]
+  };
+},
+
   methods: {
     openModal(creation) {
       this.selectedCreation = creation;
       this.showModal = true;
     },
     submitForm() {
-      const email = import.meta.env.VITE_CONTACT_EMAIL;
-      const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
-      window.location.href = mailtoLink;
-    }
+  const email = import.meta.env.VITE_CONTACT_EMAIL;
+  const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
+  window.location.href = mailtoLink;
+}
+
   },
   components: {
     Modal
