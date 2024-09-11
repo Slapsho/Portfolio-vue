@@ -1,28 +1,33 @@
 <template>
   <header>
-    <img src="../assets/image/Cv Vector Design Images, Vector Cv Icon, Cv Icons, Cv Icon, Resume PNG Image For Free Download.jpeg" alt="Logo" @click="goHome" />
+    <img 
+      :src="require('../assets/image/CvVectorDesign.jpeg')" 
+      alt="Logo" 
+      @click="goHome" 
+      class="logo"
+    />
     <nav>
-      <a href="#presentation" :class="{ active: isActive('presentation') }">Présentation</a>
-      <a href="#creations" :class="{ active: isActive('creations') }">Créations</a>
-      <a href="#contact" :class="{ active: isActive('contact') }">Contact</a>
-      <router-link to="/work" :class="{ active: isActiveRoute('/work') }">Travaux</router-link>
-      <ul>
-      <li><router-link to="/">Accueil</router-link></li>
-      <li><router-link to="/about">À propos de moi</router-link></li>
-      <li><router-link to="/github-page">Projet GitHub</router-link></li>
+      <ul class="main-nav">
+        <li><a href="#presentation" :class="{ active: isActive('presentation') }">Présentation</a></li>
+        <li><a href="#creations" :class="{ active: isActive('creations') }">Créations</a></li>
+        <li><a href="#contact" :class="{ active: isActive('contact') }">Contact</a></li>
+        <li><router-link to="/work" :class="{ active: isActiveRoute('/work') }">Travaux</router-link></li>
+        <li><router-link to="/">Accueil</router-link></li>
+        <li><router-link to="/about">À propos de moi</router-link></li>
+        <li><router-link to="/github-page">Projet GitHub</router-link></li>
       </ul>
       <div class="social-icons">
-        <img src="../assets/image/github.jpeg" alt="Logo github"><a href="https://github.com/victorsannier" target="_blank" class="header-icon">
-          <i class="fab fa-github"></i>
+        <a href="https://github.com/victorsannier" target="_blank" class="header-icon" aria-label="GitHub">
+          <img :src="require('../assets/image/github.jpeg')" alt="Logo GitHub">
         </a>
-        <img src="../assets/image/linkdin.jpeg" alt="Logo linkdin"><a href="https://linkedin.com/in/victorsannier" target="_blank" class="header-icon">
-          <i class="fab fa-linkedin"></i>
+        <a href="https://linkedin.com/in/victorsannier" target="_blank" class="header-icon" aria-label="LinkedIn">
+          <img :src="require('../assets/image/linkdin.jpeg')" alt="Logo LinkedIn">
         </a>
-        <img src="../assets/image/x-logo-twitter-elon-musk.webp" alt="Logo x"><a href="https://twitter.com/victorsannier" target="_blank" class="header-icon">
-          <i class="fab fa-twitter"></i>
+        <a href="https://twitter.com/victorsannier" target="_blank" class="header-icon" aria-label="Twitter">
+          <img :src="require('../assets/image/x-logo-twitter-elon-musk.webp')" alt="Logo Twitter">
         </a>
-        <img src="../assets/image/" alt="Logo github"><a href="https://facebook.com/victorsannier" target="_blank" class="header-icon">
-          <i class="fab fa-facebook"></i>
+        <a href="https://facebook.com/victorsannier" target="_blank" class="header-icon" aria-label="Facebook">
+          <img :src="require('../assets/image/facebook.jpeg')" alt="Logo Facebook">
         </a>
       </div>
     </nav>
@@ -50,29 +55,80 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-nav a {
-  margin: 0 10px;
+.logo {
+  width: 150px;
+  cursor: pointer;
 }
 
-nav a.active {
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav li {
+  margin: 0 15px;
+}
+
+nav a, .router-link {
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover, .router-link:hover {
+  color: #007BFF;
+}
+
+nav a.active, .router-link.active {
   text-decoration: underline;
+  font-weight: bold;
 }
 
 .social-icons {
   display: flex;
+  margin-left: 20px;
 }
 
 .header-icon {
-  margin: 0 5px;
-  font-size: 1.5rem;
-  color: #333;
-  transition: opacity 0.3s ease;
+  margin: 0 10px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .header-icon:hover {
-  opacity: 0.5;
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.header-icon img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .main-nav {
+    flex-direction: column;
+  }
+
+  .main-nav li {
+    margin: 10px 0;
+  }
 }
 </style>
-
