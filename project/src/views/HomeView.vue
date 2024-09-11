@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Section de présentation -->
     <section id="presentation">
       <h1>{{ name }}</h1>
       <p>{{ description }}</p>
@@ -7,6 +8,7 @@
       <p>{{ phone }}</p>
     </section>
 
+    <!-- Section de créations -->
     <section id="creations">
       <h2>Mes Créations</h2>
       <div class="creations">
@@ -15,12 +17,13 @@
           :key="creation.id" 
           class="creation" 
           @click="openModal(creation)">
-          <img :src="creation.image" :alt="creation.title"/>
+          <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)"/>
           <h3>{{ creation.title }}</h3>
         </div>
       </div>
     </section>
 
+    <!-- Section de contact -->
     <section id="contact">
       <h2>Contactez-moi</h2>
       <form @submit.prevent="submitForm">
@@ -31,9 +34,11 @@
       </form>
     </section>
 
+    <!-- Modal de création -->
     <Modal v-if="showModal" :creation="selectedCreation" @close="showModal = false"/>
   </div>
 </template>
+
 
 <script>
 import Modal from '../components/Modal.vue';
@@ -41,44 +46,50 @@ import Modal from '../components/Modal.vue';
 export default {
   name: 'HomeView',
   data() {
-  return {
-    name: 'Victor Sannier',
-    description: 'Développeur web débutant basé à Rouen.',
-    address: 'Rouen',
-    phone: '06 69 38 31 70',
-    showModal: false,
-    selectedCreation: null,
-    contact: {
-      name: '',
-      subject: '',
-      message: ''
-    },
-    creations: [ 
-      {
-        id: 1,
-        title: 'Projet 1',
-        image: 'path/to/image1.jpg'
+    return {
+      name: 'Victor Sannier',
+      description: 'Développeur web débutant basé à Rouen.',
+      address: 'Rouen',
+      phone: '06 69 38 31 70',
+      showModal: false,
+      selectedCreation: null,
+      contact: {
+        name: '',
+        subject: '',
+        message: ''
       },
-      {
-        id: 2,
-        title: 'Projet 2',
-        image: 'path/to/image2.jpg'
-      }
-    ]
-  };
-},
-
+      creations: [ 
+        {
+          id: 1,
+          title: 'Projet 1',
+          image: 'path/to/image1.jpg'
+        },
+        {
+          id: 2,
+          title: 'Projet 2',
+          image: 'path/to/image2.jpg'
+        }
+      ]
+    };
+  },
   methods: {
     openModal(creation) {
       this.selectedCreation = creation;
       this.showModal = true;
     },
+    handleImageError(event) {
+      event.target.src = 'path/to/placeholder-image.jpg'; // Remplacer par une image par défaut
+    },
     submitForm() {
-  const email = import.meta.env.VITE_CONTACT_EMAIL;
-  const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
-  window.location.href = mailtoLink;
-}
+      if (!this.contact.name || !this.contact.subject || !this.contact.message) {
+        alert('Tous les champs sont obligatoires.');
+        return;
+      }
 
+      const email = import.meta.env.VITE_CONTACT_EMAIL;
+      const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=Nom: ${this.contact.name}%0D%0A%0D%0A${this.contact.message}`;
+      window.location.href = mailtoLink;
+    }
   },
   components: {
     Modal
@@ -86,7 +97,80 @@ export default {
 };
 </script>
 
+
 <style scoped>
-/* Ajoutez ici vos styles pour la page d'accueil */
+#presentation {
+  padding: 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  border-radius: 8px;
+}
+
+#presentation h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+#creations {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.creation {
+  flex: 0 1 30%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.creation img {
+  max-width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.creation img:hover {
+  transform: scale(1.05);
+}
+
+#contact {
+  margin-top: 50px;
+  background-color: #ececec;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#contact input, #contact textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#contact button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#contact button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 768px) {
+  .creation {
+    flex: 0 1 100%;
+  }
+}
 </style>
+
 
