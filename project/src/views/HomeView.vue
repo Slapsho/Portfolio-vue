@@ -86,15 +86,20 @@ export default {
         return;
       }
 
-      const email = import.meta.env.VITE_CONTACT_EMAIL;
-      const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=Nom: ${this.contact.name}%0D%0A%0D%0A${this.contact.message}`;
-      window.location.href = mailtoLink;
+  const email = import.meta.env.VITE_CONTACT_EMAIL;
+  if (email) {
+    const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
+    window.location.href = mailtoLink;
+  } else {
+    console.error('L\'email de contact n\'est pas défini.');
+  }
     }
-  },
+  }
+}
   components: {
     Modal
-  }
-};
+  };
+
 </script>
 
 
