@@ -5,7 +5,7 @@ import NotFound from '../views/NotFound.vue';
 import WorkView from '@/views/WorkView.vue';
 const routes = [
   {
-    path: '/',
+    path: '/Home',
     name: 'Home',
     component: HomeView
   },
