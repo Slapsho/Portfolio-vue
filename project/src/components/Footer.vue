@@ -31,7 +31,7 @@
         class="footer-icon"
         aria-label="Facebook"
       >
-        <i class="fab fa-facebook"></i>
+        <i class="fab fa-Facebook"></i>
       </a>
     </div>
     <div class="update-info">
