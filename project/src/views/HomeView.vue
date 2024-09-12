@@ -62,7 +62,7 @@ export default {
         {
           id: 1,
           title: 'Projet 1',
-          image: 'path/to/image1.jpg'
+          image: './'
         },
         {
           id: 2,
