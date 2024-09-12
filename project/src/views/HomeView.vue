@@ -81,19 +81,21 @@ export default {
       event.target.src = 'path/to/placeholder-image.jpg'; // Remplacer par une image par défaut
     },
     submitForm() {
-      if (!this.contact.name || !this.contact.subject || !this.contact.message) {
-        alert('Tous les champs sont obligatoires.');
-        return;
-      }
+  if (!this.contact.name || !this.contact.subject || !this.contact.message) {
+    alert('Tous les champs sont obligatoires.');
+    return;
+  }
+  console.log(import.meta.env);
 
-      const email = import.meta.env.VITE_CONTACT_EMAIL;
-      if (email) {
-        const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
-        window.location.href = mailtoLink;
-      } else {
-        console.error('L\'email de contact n\'est pas défini.');
-      }
-    }
+  const email = import.meta.env.VITE_CONTACT_EMAIL;
+  if (email) {
+    const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
+    window.location.href = mailtoLink;
+  } else {
+    console.error("L'email de contact n'est pas défini.");
+  }
+}
+
   },
   components: {
     Modal 
