@@ -61,13 +61,13 @@ export default {
       creations: [ 
         {
           id: 1,
-          title: 'Projet 1',
-          image: './'
+          title: 'Github',
+          image: './github-image.jpg'
         },
         {
           id: 2,
-          title: 'Projet 2',
-          image: 'path/to/image2.jpg'
+          title: 'Charges',
+          image: './project/src/assets/image/Stationery Design Mockup Vector PNG Images, Book Icon Design  Stationery Icon Vector Design, Book Icons, Icons Icons, Book Clipart PNG Image For Free Download.jpeg'
         }
       ]
     };
