@@ -8,14 +8,42 @@
     <!-- Contenu des routes -->
     <router-view></router-view>
 
-    <!-- Footer avec icônes sociales -->
+    <!-- Footer avec icônes sociales et liens -->
     <footer>
       <p>© 2024 Victor Sannier. Tous droits réservés.</p>
       <div class="social-icons">
-        <img src="@/assets/image/facebook.jpg" alt="Facebook" class="social-icon">
-        <img src="@/assets/image/linkdin.jpeg" alt="LinkedIn" class="social-icon">
-        <img src="@/assets/image/github.jpeg" alt="GitHub" class="social-icon">
-        <img src="@/assets/image/x-logo-twitter-elon-musk.webp" alt="X" class="social-icon">
+        <a 
+          href="https://www.facebook.com/victorsannier" 
+          target="_blank" 
+          aria-label="Facebook" 
+          class="social-link"
+        >
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a 
+          href="https://www.linkedin.com/in/victorsannier" 
+          target="_blank" 
+          aria-label="LinkedIn" 
+          class="social-link"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a 
+          href="https://github.com/victorsannier" 
+          target="_blank" 
+          aria-label="GitHub" 
+          class="social-link"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a 
+          href="https://twitter.com/victorsannier" 
+          target="_blank" 
+          aria-label="Twitter" 
+          class="social-link"
+        >
+          <i class="fab fa-twitter"></i>
+        </a>
       </div>
     </footer>
   </div>
@@ -71,19 +99,25 @@ footer p {
 }
 
 .social-icons {
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
 }
 
-.social-icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
+.social-link {
+  font-size: 2rem;
+  margin: 0 15px;
+  color: white;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.social-icon:hover {
+.social-link:hover {
   opacity: 0.7;
-  transform: scale(1.1);
+  transform: scale(1.2);
+}
+
+.social-link i {
+  font-size: 2rem;
 }
 
 /* Content should take all available space */
@@ -101,10 +135,9 @@ router-view {
     font-size: 0.8rem;
   }
 
-  .social-icon {
-    width: 30px;
-    height: 30px;
-    margin: 0 5px;
+  .social-link {
+    font-size: 1.5rem;
+    margin: 0 10px;
   }
 }
 </style>

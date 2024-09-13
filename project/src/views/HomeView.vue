@@ -4,8 +4,16 @@
     <section id="presentation">
       <h1>{{ name }}</h1>
       <p>{{ description }}</p>
-      <p>{{ address }}</p>
-      <p>{{ phone }}</p>
+      <!-- Rendre l'adresse, le téléphone et l'e-mail cliquables -->
+      <p>
+        <a :href="mapLink" target="_blank">{{ address }}</a>
+      </p>
+      <p>
+        <a :href="phoneLink">{{ phone }}</a>
+      </p>
+      <p>
+        <a :href="mailtoLink">{{ contactEmail }}</a>
+      </p>
     </section>
 
     <!-- Section de créations -->
@@ -15,10 +23,12 @@
         <div 
           v-for="creation in creations" 
           :key="creation.id" 
-          class="creation" 
-          @click="openModal(creation)">
-          <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)"/>
-          <h3>{{ creation.title }}</h3>
+          class="creation">
+          <!-- Utilisation de <router-link> pour rediriger vers des pages internes -->
+          <router-link :to="creation.route">
+            <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)" />
+            <h3>{{ creation.title }}</h3>
+          </router-link>
         </div>
       </div>
     </section>
@@ -39,7 +49,6 @@
   </div>
 </template>
 
-
 <script>
 import Modal from '../components/Modal.vue';
 
@@ -51,6 +60,7 @@ export default {
       description: 'Développeur web débutant basé à Rouen.',
       address: 'Rouen',
       phone: '06 69 38 31 70',
+      contactEmail: 'victor.sannier@example.com',
       showModal: false,
       selectedCreation: null,
       contact: {
@@ -58,51 +68,56 @@ export default {
         subject: '',
         message: ''
       },
-      creations: [ 
+      creations: [
         {
           id: 1,
           title: 'Github',
-          image: './github-image.jpg'
+          image: './github-image.jpg',
+          route: '/github'
         },
         {
           id: 2,
           title: 'Charges',
-          image: './project/src/assets/image/Stationery Design Mockup Vector PNG Images, Book Icon Design  Stationery Icon Vector Design, Book Icons, Icons Icons, Book Clipart PNG Image For Free Download.jpeg'
+          image: './project/src/assets/image/Stationery Design Mockup Vector.png',
+          route: '/work'
         }
       ]
     };
   },
-  methods: {
-    openModal(creation) {
-      this.selectedCreation = creation;
-      this.showModal = true;
+  computed: {
+    mapLink() {
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(this.address)}`;
     },
+    phoneLink() {
+      return `tel:${this.phone.replace(/\s+/g, '')}`; 
+    },
+    mailtoLink() {
+      return `mailto:${this.contactEmail}`;
+    }
+  },
+  methods: {
     handleImageError(event) {
-      event.target.src = 'path/to/placeholder-image.jpg'; // Remplacer par une image par défaut
+      event.target.src = 'path/to/placeholder-image.jpg'; 
     },
     submitForm() {
-  if (!this.contact.name || !this.contact.subject || !this.contact.message) {
-    alert('Tous les champs sont obligatoires.');
-    return;
-  }
-  console.log(import.meta.env);
-
-  const email = import.meta.env.VITE_CONTACT_EMAIL;
-  if (email) {
-    const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
-    window.location.href = mailtoLink;
-  } else {
-    console.error("L'email de contact n'est pas défini.");
-  }
-}
-
+      if (!this.contact.name || !this.contact.subject || !this.contact.message) {
+        alert('Tous les champs sont obligatoires.');
+        return;
+      }
+      const email = import.meta.env.VITE_CONTACT_EMAIL;
+      if (email) {
+        const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
+        window.location.href = mailtoLink;
+      } else {
+        console.error("L'email de contact n'est pas défini.");
+      }
+    }
   },
   components: {
-    Modal 
+    Modal
   }
 };
 </script>
-
 
 <style scoped>
 #presentation {
@@ -178,5 +193,3 @@ export default {
   }
 }
 </style>
-
-

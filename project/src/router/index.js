@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import aboutView from '../views/about.vue';  
 import NotFound from '../views/NotFound.vue'; 
-import WorkView from '@/views/WorkView.vue';
+import WorkView from '../views/WorkView.vue';  
 import GithubPage from '@/views/GithubPage.vue';
 const routes = [
   {
@@ -16,10 +16,11 @@ const routes = [
     component: aboutView
   },
   {
-    path: '/Work',
-    name: 'Work',
-    component: WorkView
+      path: '/work',   
+      name: 'work',
+      component: WorkView  
   },
+  
   {
     path: '/:catchAll(.*)',
     name: 'NotFound',
