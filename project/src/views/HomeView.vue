@@ -4,7 +4,6 @@
     <section id="presentation">
       <h1>{{ name }}</h1>
       <p>{{ description }}</p>
-      <!-- Rendre l'adresse, le téléphone et l'e-mail cliquables -->
       <p>
         <a :href="mapLink" target="_blank">{{ address }}</a>
       </p>
@@ -14,17 +13,15 @@
       <p>
         <a :href="mailtoLink">{{ contactEmail }}</a>
       </p>
+      <br>
+      <router-link to="/about">À propos de moi</router-link>
     </section>
 
     <!-- Section de créations -->
     <section id="creations">
       <h2>Mes Créations</h2>
       <div class="creations">
-        <div 
-          v-for="creation in creations" 
-          :key="creation.id" 
-          class="creation">
-          <!-- Utilisation de <router-link> pour rediriger vers des pages internes -->
+        <div v-for="creation in creations" :key="creation.id" class="creation">
           <router-link :to="creation.route">
             <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)" />
             <h3>{{ creation.title }}</h3>
@@ -42,6 +39,11 @@
         <textarea v-model="contact.message" placeholder="Message" required></textarea>
         <button type="submit">Envoyer</button>
       </form>
+
+      <!-- Message de confirmation -->
+      <div v-if="messageSent" class="confirmation-message">
+        Votre message a été envoyé (simulation).
+      </div>
     </section>
 
     <!-- Modal de création -->
@@ -68,6 +70,7 @@ export default {
         subject: '',
         message: ''
       },
+      messageSent: false,  // État pour gérer l'affichage du message de confirmation
       creations: [
         {
           id: 1,
@@ -89,7 +92,7 @@ export default {
       return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(this.address)}`;
     },
     phoneLink() {
-      return `tel:${this.phone.replace(/\s+/g, '')}`; 
+      return `tel:${this.phone.replace(/\s+/g, '')}`;
     },
     mailtoLink() {
       return `mailto:${this.contactEmail}`;
@@ -104,13 +107,18 @@ export default {
         alert('Tous les champs sont obligatoires.');
         return;
       }
-      const email = import.meta.env.VITE_CONTACT_EMAIL;
-      if (email) {
-        const mailtoLink = `mailto:${email}?subject=${this.contact.subject}&body=${this.contact.message}`;
-        window.location.href = mailtoLink;
-      } else {
-        console.error("L'email de contact n'est pas défini.");
-      }
+      
+      this.messageSent = true;
+      
+      
+      this.contact.name = '';
+      this.contact.subject = '';
+      this.contact.message = '';
+      
+     
+      setTimeout(() => {
+        this.messageSent = false;
+      }, 5000);
     }
   },
   components: {
@@ -185,6 +193,12 @@ export default {
 
 #contact button:hover {
   background-color: #555;
+}
+
+.confirmation-message {
+  margin-top: 20px;
+  color: green;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
