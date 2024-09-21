@@ -83,6 +83,12 @@ export default {
           title: 'Charges',
           image: './project/src/assets/image/Stationery Design Mockup Vector.png',
           route: '/work'
+        },
+        {
+          id: 3,
+          title: 'Mon CV',  // Ajoute l'entrée pour le CV
+          image: './cv-image.jpg',  // Image associée au CV
+          route: '/cv'  // Lien vers la route /cv
         }
       ]
     };

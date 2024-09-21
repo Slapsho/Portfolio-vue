@@ -4,6 +4,7 @@ import aboutView from '../views/about.vue';
 import NotFound from '../views/NotFound.vue'; 
 import WorkView from '../views/WorkView.vue';  
 import GithubPage from '@/views/GithubPage.vue';
+import CvView from '../views/CvView.vue';
 const routes = [
   {
     path: '/',
@@ -32,6 +33,13 @@ const routes = [
     name: 'Github',
     component: GithubPage
   },
+
+  {
+    path: '/Cv',
+    name: 'Cv', 
+    component: CvView
+  }
+
 ];
 
 const router = createRouter({
