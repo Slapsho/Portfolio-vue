@@ -20,6 +20,11 @@
     <!-- Section de créations -->
     <section id="creations">
       <h2>Mes Créations</h2>
+      <p>Pour le "Mon CV" je vais faire l'explication ici vu qu'il prend toute la page.
+        Voici l'intitulé : Le livrable attendu est un lien vers le repository GitHub du projet.
+        Ce projet ne contiendra qu'une seule page HTML, plusieurs images et un ou plusieurs fichiers CSS.
+        Il devra être correctement structuré (ne pas avoir l'ensemble des fichiers à la racine direct du projet, utiliser des sous dossiers).
+      </p>
       <div class="creations">
         <div v-for="creation in creations" :key="creation.id" class="creation">
           <router-link :to="creation.route">
@@ -54,6 +59,7 @@
 <script>
 import Modal from '../components/Modal.vue';
 
+
 export default {
   name: 'HomeView',
   data() {
@@ -72,25 +78,23 @@ export default {
       },
       messageSent: false,  // État pour gérer l'affichage du message de confirmation
       creations: [
-        {
-          id: 1,
-          title: 'Github',
-          image: './github-image.jpg',
-          route: '/github'
-        },
-        {
-          id: 2,
-          title: 'Charges',
-          image: './project/src/assets/image/Stationery Design Mockup Vector.png',
-          route: '/work'
-        },
-        {
-          id: 3,
-          title: 'Mon CV',  // Ajoute l'entrée pour le CV
-          image: './cv-image.jpg',  // Image associée au CV
-          route: '/cv'  // Lien vers la route /cv
-        }
-      ]
+  {
+    id: 1,
+    title: 'Github',
+    route: '/github'
+  },
+  {
+    id: 2,
+    title: 'Charges',
+    route: '/work'
+  },
+  {
+    id: 3,
+    title: 'Mon CV',
+    route: '/cv'
+  }
+]
+
     };
   },
   computed: {
