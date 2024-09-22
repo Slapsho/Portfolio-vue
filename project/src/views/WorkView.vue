@@ -1,6 +1,11 @@
 <template>
   <div>
     <h1>Mes Travaux sur les cahiers des charges</h1>
+    <div class="présentation">
+    <p>
+      Voici un travail que j'ai du effectuer, il s'agit comme le nom l'indique d'un cahier des charges pour une socièté fictive de chaussettes. 
+    </p>
+    </div>
     <div class="gallery">
       <div 
         v-for="image in images" 
