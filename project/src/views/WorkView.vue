@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>Mes Travaux</h1>
+    <h1>Mes Travaux sur les cahiers des charges</h1>
+    <div class="présentation">
+    <p>
+      Voici un travail que j'ai du effectuer, il s'agit comme le nom l'indique d'un cahier des charges pour une socièté fictive de chaussettes. 
+    </p>
+    </div>
     <div class="gallery">
       <div 
         v-for="image in images" 
@@ -23,18 +28,27 @@
   </div>
 </template>
 
+
 <script>
+import Charge1 from '@/assets/image.charges/Charges 1.png';
+import Charge2 from '@/assets/image.charges/Charges 2.png';
+import Charge3 from '@/assets/image.charges/Charges 3.png';
+import Charge4 from '@/assets/image.charges/Charges 4.png';
+import Charge5 from '@/assets/image.charges/Charges 5.png';
+import Charge6 from '@/assets/image.charges/Charges 6.png';
+import Charge7 from '@/assets/image.charges/Charges 7.png';
+
 export default {
   data() {
     return {
       images: [
-        { id: 1, src:'@/assets/image.charges/Charges 1.png', alt: 'Travail 1', description: 'Description du travail 1' },
-        { id: 2, src: '@/assets/image.charges/Charges 2.png', alt: 'Travail 2', description: 'Description du travail 2' },
-        { id: 3, src: '@/assets/image.charges/Charges 3.png', alt: 'Travail 3', description: 'Description du travail 3' },
-        { id: 4, src: '@/assets/image.charges/Charges 4.png', alt: 'Travail 4', description: 'Description du travail 4' },
-        { id: 5, src: '@/assets/image.charges/Charges 5.png', alt: 'Travail 5', description: 'Description du travail 5' },
-        { id: 6, src: '@/assets/image.charges/Charges 6.png', alt: 'Travail 6', description: 'Description du travail 6' },
-        { id: 7, src: '@/assets/image.charges/Charges 7.png', alt: 'Travail 7', description: 'Description du travail 7' },
+        { id: 1, src: Charge1, alt: 'Travail 1', description: 'Page 1 : Introduction' },
+        { id: 2, src: Charge2, alt: 'Travail 2', description: 'Page 2 : Suite introduction, liste des étapes et titre du 3 : analyse' },
+        { id: 3, src: Charge3, alt: 'Travail 3', description: 'Page 3 : Analyse concurrent et clients' },
+        { id: 4, src: Charge4, alt: 'Travail 4', description: 'Page 4 : Objectifs qualitatifs et quantitatifs ainsi que début du périmètre' },
+        { id: 5, src: Charge5, alt: 'Travail 5', description: 'Page 5 : Périmètre suite et graphisme' },
+        { id: 6, src: Charge6, alt: 'Travail 6', description: 'Page 6 : Contretaintes et contenu ainsi que planning de travail' },
+        { id: 7, src: Charge7, alt: 'Travail 7', description: 'Page 7 : Suite de la page 6 et résumé' },
       ],
       showModal: false,
       selectedImage: null
@@ -51,6 +65,9 @@ export default {
   }
 };
 </script>
+
+
+
 
 <style scoped>
 .gallery {

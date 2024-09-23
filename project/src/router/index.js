@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import AboutView from '../views/about.vue';  
+import aboutView from '../views/about.vue';  
 import NotFound from '../views/NotFound.vue'; 
-import WorkView from '@/views/WorkView.vue';
+import WorkView from '../views/WorkView.vue';  
+import GithubPage from '@/views/GithubPage.vue';
+import CvView from '../views/CvView.vue';
 const routes = [
   {
     path: '/',
@@ -11,19 +13,33 @@ const routes = [
   },
   {
     path: '/about',
-    name: 'About',
-    component: AboutView
+    name: 'about',
+    component: aboutView
   },
   {
-    path: '/Work',
-    name: 'Work',
-    component: WorkView
+      path: '/work',   
+      name: 'work',
+      component: WorkView  
   },
+  
   {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: NotFound
+  },
+
+  {
+    path: '/Github',
+    name: 'Github',
+    component: GithubPage
+  },
+
+  {
+    path: '/Cv',
+    name: 'Cv', 
+    component: CvView
   }
+
 ];
 
 const router = createRouter({

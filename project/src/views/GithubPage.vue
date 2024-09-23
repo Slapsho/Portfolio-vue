@@ -11,7 +11,13 @@
         <p>
   Ce projet est un espace de commentaire que j'ai réalisé. Il s'agit de mon dernier travail, sans compter celui-ci. 
   L'objectif était de créer un formulaire valide. Dans ce projet, j'ai dû ajouter un message d'erreur en cas de réponse non valide, 
-  et faire en sorte que le message soit affiché à la fin, sans modifier la page initiale.
+  et faire en sorte que le message soit affiché à la fin, sans modifier la page initiale. Donc pour ce devoir je uniquement effectué du JS afin d'effectuer tout cela et pour avoir
+  un aperçu le formulaire sur la première page est une version légèrement modifier de celui du devoir, je l'ai modifier histoire qu'il feat avec le reste du portfolio.
+      </p>
+      <p>
+        Intitulé du devoir : Une agence gérant plusieurs sites web vient vers vous afin de réaliser une courte mission concernant uniquement l'utilisation du langage
+        Javascript. Cette mission consiste à dynamiser un espace commentaire afin de faire apparaître un nouveau commentaire directement dans la liste des commentaires
+        au moment oú on valide le formulaire, sans aucun rechargement de la page. 
       </p>
       </div>
     </div>
