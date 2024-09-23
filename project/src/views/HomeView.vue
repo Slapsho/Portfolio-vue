@@ -23,7 +23,8 @@
       <p>Pour le "Mon CV" je vais faire l'explication ici vu qu'il prend toute la page.
         Voici l'intitulé : Le livrable attendu est un lien vers le repository GitHub du projet.
         Ce projet ne contiendra qu'une seule page HTML, plusieurs images et un ou plusieurs fichiers CSS.
-        Il devra être correctement structuré (ne pas avoir l'ensemble des fichiers à la racine direct du projet, utiliser des sous dossiers).
+        Il devra être correctement structuré (ne pas avoir l'ensemble des fichiers à la racine direct du projet, utiliser des sous dossiers)
+        ( P.S : je l'ai légèrement modifié afin qu'il corresponde au reste).
       </p>
       <div class="creations">
         <div v-for="creation in creations" :key="creation.id" class="creation">
