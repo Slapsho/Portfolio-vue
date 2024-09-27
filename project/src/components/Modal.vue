@@ -1,95 +1,63 @@
 <template>
-  <div class="modal-overlay" @click.self="close" aria-modal="true" role="dialog">
-    <div class="modal">
-      <button @click="close" aria-label="Fermer la modale">Fermer</button>
-      <h2>{{ creation.title }}</h2>
-      <p v-if="creation.date">Date : {{ formatDate(creation.date) }}</p>
-      <p v-if="creation.technologies">Technologies : {{ creation.technologies }}</p>
-      <div class="links">
-        <a v-if="creation.link" :href="creation.link" target="_blank" rel="noopener">Voir le projet</a>
-        <a v-if="creation.repo" :href="creation.repo" target="_blank" rel="noopener">Voir le repo GitHub</a>
-      </div>
+  <div class="modal" @click.self="$emit('close')"> 
+    <div class="modal-content">
+      <span class="close" @click="$emit('close')">&times;</span>
+      
+      <!-- Utilisation du composant dynamique -->
+      <component v-if="componentName" :is="componentName"></component>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppModal',
+  name: 'ModalComponent', 
   props: {
-    creation: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    close() {
-      this.$emit('close');
-    },
-    formatDate(date) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(date).toLocaleDateString(undefined, options);
+    componentName: {
+      type: [String, Object],
+      required: false,
+      default: null
     }
   }
 };
 </script>
 
 <style scoped>
-.modal-overlay {
+.modal {
   position: fixed;
-  top: 0;
+  z-index: 1000;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  align-items: center; 
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
-.modal {
+.modal-content {
   background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 90%;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.3s ease-out;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80vh; 
+  overflow-y: auto; 
 }
 
-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.links a {
-  display: inline-block;
-  margin: 10px;
-  color: #3498db;
-  text-decoration: none;
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
 }
 
-.links a:hover {
-  text-decoration: underline;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>

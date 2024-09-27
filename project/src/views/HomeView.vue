@@ -20,18 +20,12 @@
     <!-- Section de créations -->
     <section id="creations">
       <h2>Mes Créations</h2>
-      <p>Pour le "Mon CV" je vais faire l'explication ici vu qu'il prend toute la page.
-        Voici l'intitulé : Le livrable attendu est un lien vers le repository GitHub du projet.
-        Ce projet ne contiendra qu'une seule page HTML, plusieurs images et un ou plusieurs fichiers CSS.
-        Il devra être correctement structuré (ne pas avoir l'ensemble des fichiers à la racine direct du projet, utiliser des sous dossiers)
-        ( P.S : je l'ai légèrement modifié afin qu'il corresponde au reste).
-      </p>
+      <p>Pour le "Mon CV" je vais faire l'explication ici vu qu'il prend toute la page.</p>
       <div class="creations">
         <div v-for="creation in creations" :key="creation.id" class="creation">
-          <router-link :to="creation.route">
-            <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)" />
-            <h3>{{ creation.title }}</h3>
-          </router-link>
+          <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)" @click="openModal(creation)" />
+          <h3>{{ creation.title }}</h3>
+          <button @click="openModal(creation)">Voir les détails</button>
         </div>
       </div>
     </section>
@@ -53,16 +47,18 @@
     </section>
 
     <!-- Modal de création -->
-    <Modal v-if="showModal" :creation="selectedCreation" @close="showModal = false"/>
+    <Modal v-if="showModal" :componentName="selectedComponent" @close="closeModal" />
   </div>
 </template>
 
 <script>
-import Modal from '../components/Modal.vue';
-
+import Modal from '../components/Modal.vue';  // Ajout de la modale
 
 export default {
   name: 'HomeView',
+  components: {
+    Modal  // Seulement la modale est utilisée directement dans le template
+  },
   data() {
     return {
       name: 'Victor Sannier',
@@ -71,31 +67,33 @@ export default {
       phone: '06 69 38 31 70',
       contactEmail: 'victor.sannier@example.com',
       showModal: false,
-      selectedCreation: null,
+      selectedComponent: null,
       contact: {
         name: '',
         subject: '',
         message: ''
       },
-      messageSent: false,  // État pour gérer l'affichage du message de confirmation
+      messageSent: false,
       creations: [
-  {
-    id: 1,
-    title: 'Github',
-    route: '/github'
-  },
-  {
-    id: 2,
-    title: 'Charges',
-    route: '/work'
-  },
-  {
-    id: 3,
-    title: 'Mon CV',
-    route: '/cv'
-  }
-]
-
+        {
+          id: 1,
+          title: 'Github',
+          component: () => import('../components/GithubPage.vue'),  // Chargement dynamique
+          image: '/path/to/github.jpg',
+        },
+        {
+          id: 2,
+          title: 'Charges',
+          component: () => import('../components/WorkView.vue'),  // Chargement dynamique
+          image: '/path/to/work.jpg',
+        },
+        {
+          id: 3,
+          title: 'Mon CV',
+          component: () => import('../components/CvView.vue'),  // Chargement dynamique
+          image: '/path/to/cv.jpg',
+        }
+      ]
     };
   },
   computed: {
@@ -118,22 +116,24 @@ export default {
         alert('Tous les champs sont obligatoires.');
         return;
       }
-      
+
       this.messageSent = true;
-      
-      
       this.contact.name = '';
       this.contact.subject = '';
       this.contact.message = '';
-      
-     
+
       setTimeout(() => {
         this.messageSent = false;
       }, 5000);
+    },
+    async openModal(creation) {
+      this.selectedComponent = await creation.component();  // Chargement du composant lors de l'ouverture de la modale
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.selectedComponent = null;
     }
-  },
-  components: {
-    Modal
   }
 };
 </script>
