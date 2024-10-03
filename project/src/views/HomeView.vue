@@ -20,46 +20,44 @@
     <!-- Section de créations -->
     <section id="creations">
       <h2>Mes Créations</h2>
-      <p>Pour le "Mon CV" je vais faire l'explication ici vu qu'il prend toute la page.
-        Voici l'intitulé : Le livrable attendu est un lien vers le repository GitHub du projet.
-        Ce projet ne contiendra qu'une seule page HTML, plusieurs images et un ou plusieurs fichiers CSS.
-        Il devra être correctement structuré (ne pas avoir l'ensemble des fichiers à la racine direct du projet, utiliser des sous dossiers)
-        ( P.S : je l'ai légèrement modifié afin qu'il corresponde au reste).
-      </p>
+      <p>Petit détail concernant le cv je l'ai modifié pour qu'il corresponde à l'ambiance du portfolio</p>
       <div class="creations">
         <div v-for="creation in creations" :key="creation.id" class="creation">
-          <router-link :to="creation.route">
-            <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)" />
-            <h3>{{ creation.title }}</h3>
-          </router-link>
+          <img :src="creation.image" :alt="creation.title" @error="handleImageError($event)" @click="openModal(creation)" />
+          <h3>{{ creation.title }}</h3>
+          <button @click="openModal(creation)">Voir les détails</button>
         </div>
       </div>
     </section>
 
-    <!-- Section de contact -->
+    <!-- Modal pour afficher les créations -->
+    <transition name="fade">
+      <div v-if="showModal" class="modal" @click.self="closeModal">
+        <div class="modal-content">
+          <button class="close-modal" @click="closeModal">&times;</button>
+          <component :is="selectedComponent" v-bind="selectedProps"></component>
+        </div>
+      </div>
+    </transition>
+
+    <!-- Section de contact avec formulaire -->
     <section id="contact">
       <h2>Contactez-moi</h2>
       <form @submit.prevent="submitForm">
-        <input type="text" v-model="contact.name" placeholder="Nom/Prénom" required />
-        <input type="text" v-model="contact.subject" placeholder="Objet" required />
-        <textarea v-model="contact.message" placeholder="Message" required></textarea>
+        <input type="text" v-model="formData.name" placeholder="Votre nom" required />
+        <input type="email" v-model="formData.email" placeholder="Votre email" required />
+        <textarea v-model="formData.message" placeholder="Votre message" rows="5" required></textarea>
         <button type="submit">Envoyer</button>
       </form>
-
-      <!-- Message de confirmation -->
-      <div v-if="messageSent" class="confirmation-message">
-        Votre message a été envoyé (simulation).
-      </div>
+      <p v-if="confirmationMessage" class="confirmation-message">{{ confirmationMessage }}</p>
     </section>
-
-    <!-- Modal de création -->
-    <Modal v-if="showModal" :creation="selectedCreation" @close="showModal = false"/>
   </div>
 </template>
 
 <script>
-import Modal from '../components/Modal.vue';
-
+import CvView from '../components/CvView.vue';
+import GithubPage from '../components/GithubPage.vue';
+import WorkView from '../components/WorkView.vue';
 
 export default {
   name: 'HomeView',
@@ -70,70 +68,63 @@ export default {
       address: 'Rouen',
       phone: '06 69 38 31 70',
       contactEmail: 'victor.sannier@example.com',
+      mapLink: 'https://www.google.com/maps?q=Rouen',
+      phoneLink: 'tel:+33669383170',
+      mailtoLink: 'mailto:victor.sannier@example.com',
       showModal: false,
-      selectedCreation: null,
-      contact: {
+      selectedComponent: null,
+      selectedProps: {}, 
+      creations: [
+        {
+          id: 1,
+          title: 'Github',
+          component: GithubPage,
+          image: '/path/to/github.jpg',
+          description: 'Voici mon profil Github.'
+        },
+        {
+          id: 2,
+          title: 'Charges',
+          component: WorkView,
+          image: '/path/to/work.jpg',
+          description: 'Voici mon projet Charges.'
+        },
+        {
+          id: 3,
+          title: 'Mon CV',
+          component: CvView,
+          image: '/path/to/cv.jpg',
+          description: 'Voici mon CV complet.'
+        }
+      ],
+      formData: {
         name: '',
-        subject: '',
+        email: '',
         message: ''
       },
-      messageSent: false,  // État pour gérer l'affichage du message de confirmation
-      creations: [
-  {
-    id: 1,
-    title: 'Github',
-    route: '/github'
-  },
-  {
-    id: 2,
-    title: 'Charges',
-    route: '/work'
-  },
-  {
-    id: 3,
-    title: 'Mon CV',
-    route: '/cv'
-  }
-]
-
+      confirmationMessage: ''
     };
   },
-  computed: {
-    mapLink() {
-      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(this.address)}`;
-    },
-    phoneLink() {
-      return `tel:${this.phone.replace(/\s+/g, '')}`;
-    },
-    mailtoLink() {
-      return `mailto:${this.contactEmail}`;
-    }
-  },
   methods: {
+    openModal(creation) {
+      this.selectedComponent = creation.component;
+      this.selectedProps = { title: creation.title, description: creation.description };
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.selectedComponent = null;
+      this.selectedProps = {};
+    },
     handleImageError(event) {
-      event.target.src = 'path/to/placeholder-image.jpg'; 
+      event.target.src = 'path/to/placeholder-image.jpg';
     },
     submitForm() {
-      if (!this.contact.name || !this.contact.subject || !this.contact.message) {
-        alert('Tous les champs sont obligatoires.');
-        return;
-      }
-      
-      this.messageSent = true;
-      
-      
-      this.contact.name = '';
-      this.contact.subject = '';
-      this.contact.message = '';
-      
-     
-      setTimeout(() => {
-        this.messageSent = false;
-      }, 5000);
+      this.confirmationMessage = `Merci ${this.formData.name}, votre message a bien été envoyé !`;
+      this.formData.name = '';
+      this.formData.email = '';
+      this.formData.message = '';
     }
-  },
-  components: {
-    Modal
   }
 };
 </script>
@@ -172,6 +163,49 @@ export default {
 
 .creation img:hover {
   transform: scale(1.05);
+}
+
+/* Style pour la modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Transition fade pour la modal */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 #contact {

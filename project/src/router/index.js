@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import aboutView from '../views/about.vue';  
 import NotFound from '../views/NotFound.vue'; 
-import WorkView from '../views/WorkView.vue';  
-import GithubPage from '@/views/GithubPage.vue';
-import CvView from '../views/CvView.vue';
+import WorkView from '../components/WorkView.vue';  
+import GithubPage from '@/components/GithubPage.vue';
+import CvView from '../components/CvView.vue';
 const routes = [
   {
     path: '/',
